@@ -1,0 +1,11 @@
+{
+  "name": "ask-my-site",
+  "version": "1.0.0",
+  "description": "Minimal self-hosted FAQ chatbot that answers from a Markdown file. No API key required.",
+  "main": "server.js",
+  "scripts": { "start": "node server.js", "test": "node test.js" },
+  "homepage": "https://trevorheshka.com",
+  "author": "Trevor Heshka",
+  "license": "MIT",
+  "engines": { "node": ">=18" }
+}

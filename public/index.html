@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ask My Site</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#f3f4f6;margin:0;display:flex;justify-content:center;padding:40px 12px}
+.chat{width:100%;max-width:440px;background:#fff;border-radius:14px;box-shadow:0 8px 30px #0002;overflow:hidden;display:flex;flex-direction:column;height:560px}
+header{background:#111827;color:#fff;padding:14px 18px;font-weight:600}
+header small{display:block;font-weight:400;opacity:.7}
+#log{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.m{padding:9px 13px;border-radius:12px;max-width:80%;line-height:1.4;white-space:pre-wrap}
+.bot{background:#e5e7eb;align-self:flex-start}.me{background:#2563eb;color:#fff;align-self:flex-end}
+.src{font-size:11px;opacity:.6;margin-top:4px}
+form{display:flex;border-top:1px solid #e5e7eb}input{flex:1;border:0;padding:14px;font-size:15px;outline:none}
+button{border:0;background:#2563eb;color:#fff;padding:0 18px;font-size:15px;cursor:pointer}
+</style></head><body>
+<div class="chat"><header>Ask My Site<small>Answers from knowledge.md — no API key</small></header>
+<div id="log"><div class="m bot">Hi! Ask me anything about this site.</div></div>
+<form id="f"><input id="q" placeholder="Type a question…" autocomplete="off"><button>Send</button></form></div>
+<script>
+const log=document.getElementById('log'),q=document.getElementById('q');
+function add(t,c,src){const d=document.createElement('div');d.className='m '+c;d.textContent=t;
+if(src){const s=document.createElement('div');s.className='src';s.textContent='Source: '+src;d.appendChild(s)}
+log.appendChild(d);log.scrollTop=log.scrollHeight}
+async function ask(text){add(text,'me');const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:text})});
+const j=await r.json();add(j.answer,'bot',j.source)}
+document.getElementById('f').onsubmit=e=>{e.preventDefault();const t=q.value.trim();if(t){q.value='';ask(t)}};
+const demo=new URLSearchParams(location.search).get('demo');if(demo)demo.split('|').reduce((p,t)=>p.then(()=>ask(t)),Promise.resolve());
+</script></body></html>

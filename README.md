@@ -56,3 +56,11 @@ The matcher is in `answer()` in `server.js`. To use an LLM, take the top 2 or 3 
 ## License
 
 [MIT](LICENSE) © Trevor Heshka · https://trevorheshka.com
+
+---
+
+## Live app & author
+
+- **Live:** [HeshBot (production version of this idea)](https://trevorheshka.com/)
+- Built by [Trevor Heshka](https://trevorheshka.com/about/) · [Hesh Co.](https://trevorheshka.com/services/), Nanaimo, BC
+- More projects: https://trevorheshka.com/projects/
